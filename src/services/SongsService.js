@@ -39,9 +39,9 @@ class SongsService {
   async getSongs({ title, performer }) {
     let query;
     if (title && performer) {
-      query = `SELECT * FROM songs WHERE LOWER(title) LIKE '%${title}%' AND LOWER(performer) LIKE '%${performer}%'`;
+      query = `SELECT id, title, performer FROM songs WHERE LOWER(title) LIKE '%${title}%' AND LOWER(performer) LIKE '%${performer}%'`;
     } else if (title || performer) {
-      query = `SELECT * FROM songs WHERE LOWER(title) LIKE '%${title}%' OR LOWER(performer) LIKE '%${performer}%'`;
+      query = `SELECT id, title, performer FROM songs WHERE LOWER(title) LIKE '%${title}%' OR LOWER(performer) LIKE '%${performer}%'`;
     } else {
       query = 'SELECT * FROM songs';
     }

@@ -4,29 +4,19 @@
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('albums', {
+  pgm.createTable('playlists', {
     id: {
-      type: 'varchar(255)',
+      type: 'VARCHAR(50)',
       primaryKey: true,
       unique: true,
-      notNull: true,
     },
     name: {
-      type: 'varchar(255)',
+      type: 'TEXT',
       notNull: true,
     },
-    year: {
-      type: 'int',
-      notNull: true,
-    },
-    created_at: {
-      type: 'timestamp',
-      notNull: true,
-      default: pgm.func('current_timestamp'),
-    },
-    updated_at: {
-      type: 'timestamp',
-      notNull: false,
+    owner: {
+      type: 'TEXT',
+      references: 'users(id)',
     },
   });
 };
@@ -37,5 +27,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('albums');
+  pgm.dropTable('playlists');
 };
